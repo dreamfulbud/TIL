@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입 폼 구조 디자인</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    .demo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="demo">
+<div class="container">
+  <h2>사용자 정보 입력하기</h2>
+  <!--form method
+  GET  : 브라우저 주소 창에 정보가 남음. 기본값.
+  POST : 브라우저 주소 창에 정보를 남기지 않음. 개인정보등의 민감한 정보가 있을 겅우 사용. 파일(예: jpg, mp4 등)을 서버로 업로드할 때 사용.
+  -->
+  <form action="https://formspree.io/dreamfulbud@naver.com" method="POST">
+
+    <!--input [속성] name / placeholder / value / readonly / required / disabled / minlength / maxlength / list
+     *readonly 속성이 설정된 값(value)은 전송되지만, disabled 속성이 설정된 값은 전송되지 않음.
+    -->
+    <fieldset name="user_acount">
+      <legend>사용자 계정</legend>
+      <p>
+        <!--text-->
+        <label>사용자 성함 <input type="text" id="user_name" placeholder="예) 홍길동" required /></label>
+      </p>
+      <p>
+        <!--email-->
+        <label for="user_email">이메일</label>
+        <input id="user_email" name="u_email" type="email" placeholder="예) user@example.com" required />
+      </p>
+      <p>
+        <!--password-->
+        <label for="user_password">비밀번호</label>
+        <input id="user_password" name="user_pass" type="password" maxlength="8" placeholder="비밀번호 8자리를 입력해주세요" required />
+      </p>
+
+      <button type="button" class="button is-next" disabled>다음</button>
+
+      <p>
+        <strong>'다음'</strong>을 클릭하시면 <a href="#" target="_blank">이용약관</a>과 <a href="#" target="_blank">개인정보취급방침</a>에 동의하는 것으로 간주합니다.
+      </p>
+      <div>
+        <p>이미 잔디 계정이 있으신가요?</p>
+        <button type="button" class="button is-login">로그인</button>
+      </div>
+    </fieldset>
+
+    <p>
+      <!--input-->
+      <input type="submit" value="전송">
+      <input type="button" value="버튼">
+      <input type="reset" value="초기화">
+      <input type="image" src="https://goo.gl/Ng66oQ" alt="체크인" width="20" height="20">
+    </p>
+    <p>
+      <!--button [type] submit / button / reset-->
+      <button type="submit">전송</button>
+      <button type="button">버튼</button>
+      <button type="reset">초기화</button>
+    </p>
+
+  </form>
+
+
+  <form action="https://formspree.io/dreamfulbud@naver.com" method="POST" enctype="multipart-formdata">
+    <p>
+      <!--checkbox-->
+      <label for="user_agree"><input type="checkbox" name="user_agree" id="user_agree">모든 내용을 읽고 동의합니까?</label>
+    </p>
+
+    <p>
+      <!--radio-->
+      <label><input type="radio" name="user_gender" value="1">남성</label>
+      <label><input type="radio" name="user_gender" value="2" checked>여성</label>
+    </p>
+
+    <p>
+      <!--file 사용 시 form에 method="POST" enctype="multipart-formdata"를 넣어야함-->
+      <input type="file" name="user_data_upload" id="user_data_upload">
+    </p>
+
+    <p>
+      <!--hidden-->
+      <input type="hidden" name="using-ajax" value="true">
+    </p>
+
+    <p>
+      <!--search : X표시 나타남-->
+      <label>검색 <input type="search" name="" id=""></label>
+    </p>
+    <p>
+      <!--url-->
+      <label>이동할 웹주소 <input list="url_ex" type="url" name="user_url" id="user_url"></label>
+      <datalist id="url_ex">
+        <option value="http://naver.com">naver</option>
+        <option value="http://nate.com">nate</option>
+        <option value="http://google.com">google</option>
+        <option value="http://goo.gl">google short url</option>
+      </datalist>
+    </p>
+    <p>
+      <!--tel-->
+      <label>전화번호 <input list="tel_ex" type="tel" name="" id=""></label>
+      <datalist id="tel_ex">
+        <option value="111">111</option>
+        <option value="112">112</option>
+        <option value="114">114</option>
+        <option value="119">119</option>
+      </datalist>
+    </p>
+    <p>
+      <!--time / date / week / month / datetime-local -->
+      <label>time <input type="time" name="" id=""></label>
+      <label>date <input type="date" name="" id=""></label>
+      <label>week <input type="week" name="" id=""></label>
+      <label>month <input type="month" name="" id=""></label>
+      <label>datetime-local <input type="datetime-local" name="" id=""></label>
+    </p>
+    <p>
+      <!--number / range / color -->
+      <input type="number" name="" id="" min="100" step="10" max="1000" value="150">
+      <input type="range" name="" id="" min="10" step="5" max="25" value="15">
+      <input type="color" name="" id="" value="#F7CC60">
+    </p>
+
+
+    <p>
+      <!--select / option-->
+      <label for="user_hobby">취미</label>
+      <select name="user_hobby" id="user_hobby" required> <!--[속성] name / multiple / disabled / required / size-->
+        <option value="0">없음</option><!--[속성] value / selected / label / disabled -->
+        <option value="1" selected>축구</option>
+        <option value="2" label="basketball" disabled>농구</option>
+        <option value="3">독서</option>
+        <option value="3">영화관람</option>
+      </select>
+
+      <label for="user_hobby2">취미</label>
+      <select name="user_hobby2" id="user_hobby2" multiple size="2">  <!--multiple : 다중선택가능 / size : 2줄보임-->
+        <option value="0">없음</option>
+        <option value="1" selected>축구</option>
+        <option value="2" label="basketball" disabled>농구</option>
+        <option value="3">독서</option>
+        <option value="3">영화관람</option>
+      </select>
+
+      <label for="user_hobby3">취미</label>
+      <select name="user_hobby3" id="user_hobby3">
+        <option value="0">없음</option>
+        <optgroup label="구기종목"> <!--[속성] disabled/label-->
+          <option value="1" selected>축구</option>
+          <option value="2" label="basketball" disabled>농구</option>
+        </optgroup>
+        <optgroup label="문화생활">
+          <option value="3">독서</option>
+          <option value="3">영화관람</option>
+        </optgroup>
+      </select>
+    </p>
+
+    <!--textarea : [속성] name / placeholder / rows(높이) / cols(폭) / readonly / required / disabled / minlength / maxlength-->
+    <div>
+      <label for="user_comments">코멘트</label>
+      <p>
+        <textarea name="user_comments" id="user_comments" cols="24" rows="5" style="resize:none;">남기고 싶은 말을 작성해주세요.</textarea>
+      </p>
+    </div>
+
+    <p>
+      <!--progress **진행상황** [속성] value / max-->
+      <progress value="10" max="100">10%</progress>
+      <progress value="90" max="100">10%</progress>
+    </p>
+    <p>
+      <!--meter **게이지,분포,비율** [속성] value / min / max / low / high / optimum-->
+      <meter value="20" min="5" max="40">20</meter>
+    </p>
+  </form>
+
+  <!-- output - 계산된 결과를 출력하는 컨트롤-->
+  <form oninput="result_sum.value = parseInt(n1.value + n2.value, 10)">
+    <p>
+      <input type="number" name="n1" value="4"> +
+      <input type="number" name="n2" value="10"> =
+      <output name="result_sum">14</output>
+    </p>
+  </form>
+
+
+</div>
+</body>
+</html>

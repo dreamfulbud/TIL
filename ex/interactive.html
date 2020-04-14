@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <title>인터랙티브(Interactive) 요소</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+    }
+    .demo {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .container {
+      margin-top: 200px;
+      width: 80%;
+    }
+
+    .dialog {
+      max-width: 415px;
+      width: 80%;
+      border: 2px solid #3b99fc;
+      border-radius: 6px;
+      box-shadow: 1px 7px 11px rgba(118, 118, 118, 0.32);
+    }
+    .dialog-headline {
+      margin: 0 0 20px;
+      font-size: 24px;
+      font-weight: 400;
+    }
+    .dialog summary {
+      width: 100%;
+    }
+    .dialog dl {
+      margin-top: 20px;
+      margin-bottom: 0;
+      border-top: 1px solid #3b99fc;
+      padding-top: 20px;
+    }
+    .dialog dt {
+      float: left;
+      width: 145px;
+      margin-right: 10px;
+    }
+    .dialog dd {
+      margin-left: 0;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body class="demo">
+
+<div class='container'>
+<dialog class='dialog' open>
+  <section>
+    <h2 class='dialog-headline'> "html5.2-video-recture.mp4" 파일 복사</h2>
+    <details>
+      <summary>복사중... <progress value="25" max="100"></progress>25%</summary>
+      <dl>
+        <dt>초당 전송 속도:</dt>
+        <dd>723KB/s</dd>
+
+        <dt>로컬 파일이름:</dt>
+        <dd>/Desktop/html5.2-video-recture.mp4</dd>
+
+        <dt>원격 파일이름:</dt>
+        <dd>/Backup/html5.2-video-recture.mp4</dd>
+
+        <dt>재생시간:</dt>
+        <dd>00:14:38</dd>
+
+        <dt>컬러 프로파일:</dt>
+        <dd>HD (1-1-1)</dd>
+
+        <dt>해상도(너비×높이):</dt>
+        <dd>1680×1050</dd>
+      </dl>
+
+    </details>
+  </section>
+</dialog>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 테이블(Table) 디자인 &amp; 스타일링</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/spoqa-han-sans/2.1.1/css/SpoqaHanSans-kr.min.css"
+    media="none"
+    onload="if(media!=='all'){media='all'}">
+  <link rel="stylesheet" href="css/table.css">
+</head>
+
+<body>
+
+  <section id="css-table">
+
+    <article class="part">
+      <h2>테이블 스타일링</h2>
+
+      <section>
+        <p id="kakaobank-notice-summary" class="a11y-hidden">
+          카카오뱅크의 공지사항을 안내하는 표 입니다. 각 행의 요약된 '제목'은
+          상세한 내용을 확인할 수 있는 링크를 제공합니다.
+        </p>
+        <table
+          id="notice-table"
+          class="kakaobank-table"
+          aria-describedby="kakaobank-notice-summary">
+          <caption>공지사항</caption>
+          <colgroup>
+            <!-- width 70 -->
+            <col>
+            <col>
+            <!-- width 115 -->
+            <col>
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col" lang="en">No</th>
+              <th scope="col">제목</th>
+              <th scope="col">등록일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>42</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9069">PAYCO 계좌연결 오픈 안내</a>
+              </td>
+              <td><time datetime="2018-03-05">2018.03.05</time></td>
+            </tr>
+            <tr>
+              <td>41</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9065">[당첨자 발표] 카카오뱅크 체크카드 해외결제 이벤트 당첨자 발표</a>
+              </td>
+              <td><time datetime="2018-02-28">2018.02.28</time></td>
+            </tr>
+            <tr>
+              <td>40</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9055">[당첨자 발표] '황금개의 해 이벤트' 4주차 당첨 안내</a>
+              </td>
+              <td><time datetime="2018-02-20">2018.02.20</time></td>
+            </tr>
+            <tr>
+              <td>39</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9042">[당첨자 발표] '황금개의 해 이벤트' 3주차 당첨 안내</a>
+              </td>
+              <td><time datetime="2018-02-08">2018.02.08</time></td>
+            </tr>
+            <tr>
+              <td>38</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9034">설 연휴 OTP 배송 안내</a>
+              </td>
+              <td><time datetime="2018-02-05">2018.02.05</time></td>
+            </tr>
+            <tr>
+              <td>37</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9033">설 연휴 카카오뱅크 이용 안내</a>
+              </td>
+              <td><time datetime="2018-02-05">2018.02.05</time></td>
+            </tr>
+            <tr>
+              <td>36</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9030">카카오뱅크 체크카드 오류 정상화 안내</a>
+              </td>
+              <td><time datetime="2018-02-05">2018.02.05</time></td>
+            </tr>
+            <tr>
+              <td>35</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9025">[당첨자 발표] '황금개의 해 이벤트' 2주차 당첨 안내</a>
+              </td>
+              <td><time datetime="2018-02-02">2018.02.02</time></td>
+            </tr>
+            <tr>
+              <td>34</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9021">설 연휴 해외송금 일시 중단 안내</a>
+              </td>
+              <td><time datetime="2018-01-31">2018.01.31</time></td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td class="info-subject">
+                <a href="/Corp/News/Notices/view/9013">[당첨자 발표] '황금개의 해 이벤트' 1주차 당첨 안내</a>
+              </td>
+              <td><time datetime="2018-01-26">2018.01.26</time></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+
+</body>
+</html>

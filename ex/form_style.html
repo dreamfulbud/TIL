@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 폼(Form) 디자인 &amp; 스타일링</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/spoqa-han-sans/2.1.1/css/SpoqaHanSans-kr.min.css"
+    media="none"
+    onload="if(media!=='all'){media='all'}">
+  <link rel="stylesheet" href="css/form.css">
+
+</head>
+
+<body>
+
+  <h2>폼 스타일링</h2>
+
+  <section>
+    <h3>실습</h3>
+
+    <!-- 모달 폼 디자인 데모 -->
+    <!-- modal-form -->
+    <div class="modal-form ">
+      <h2>SIGN IN</h2>
+      <form lang="en" action="#" method="POST">
+        <p>
+          <label for="user_name">USERNAME</label>
+          <input
+            id="user_name"
+            name="user_name"
+            type="text"
+            placeholder="Paul Flavius">
+        </p>
+        <p>
+          <label for="user_password">PASSWORD</label>
+          <input
+            id="user_password"
+            name="user_password"
+            type="password"
+            placeholder="input your password.">
+        </p>
+        <p>
+          <!-- a11y-hidden -->
+          <input
+            class="a11y-hidden"
+            type="checkbox"
+            id="keep_signed_in"
+            name="keep_signed_in">
+          <label for="keep_signed_in">Keep me Signed in</label>
+        </p>
+        <button type="submit">SIGN IN</button>
+      </form>
+      <a href="" class="forgot-password">Forgot Password?</a>
+    </div>
+
+    <hr>
+
+    <!-- 상태 디자인 데모 -->
+    <form hidden class="state-design clearfix">
+
+      <div class="practice">
+        <label class="is-pristine">
+          <span class="label-text">이메일</span>
+          <input
+            type="email"
+            placeholder="user@example.com">
+        </label>
+        <script>
+          var pristine_input = document.querySelector('.is-pristine input');
+
+          function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+          }
+
+          pristine_input.addEventListener('focus', function(e) {
+            var label = e.target.parentNode;
+            if(label.classList.contains('is-pristine')) {
+              label.classList.remove('is-pristine');
+            }
+          });
+
+          pristine_input.addEventListener('input', function(e) {
+            var label = e.target.parentNode;
+            var valid = validateEmail(e.target.value);
+            if(valid) {
+              label.classList.remove('is-invalid');
+              label.classList.add('is-valid');
+            }
+          });
+
+          pristine_input.addEventListener('blur', function(e) {
+            console.log('blur', e.target.value);
+            var label = e.target.parentNode;
+            var valid = validateEmail(e.target.value);
+            if(!valid) {
+              label.classList.remove('is-valid');
+              label.classList.add('is-invalid');
+            }
+          });
+        </script>
+      </div>
+
+      <div class="guide">
+        <label class="is-pristine">
+          <span class="label-text">일반(normal) 상태</span>
+          <input
+            type="email"
+            placeholder="user@example.com">
+        </label>
+        <label class="is-active">
+          <span class="label-text">활성(enabled) 상태</span>
+          <input
+            readonly
+            type="email"
+            value="yamoo9@naver.com"
+            placeholder="user@example.com">
+        </label>
+        <label class="is-valid">
+          <span class="label-text">유효(valid) 상태</span>
+          <input
+            readonly
+            type="email"
+            value="yamoo9@naver.com"
+            placeholder="user@example.com">
+        </label>
+        <label class="is-invalid">
+          <span class="label-text">오류(invalid) 상태</span>
+          <input
+            readonly
+            type="email"
+            value="yamoo9!google"
+            placeholder="user@example.com">
+        </label>
+        <label class="is-disabled">
+          <span class="label-text">비활성(disabled) 상태</span>
+          <input
+            disabled
+            type="email"
+            value="입력할 수 없습니다."
+            placeholder="user@example.com">
+        </label>
+      </div>
+
+    </form>
+
+  </section>
+
+
+</body>
+</html>

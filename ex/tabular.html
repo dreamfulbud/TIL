@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML 테이블(Table) 요소들</title>
+  <style>
+    .a11y-hidden {
+      overflow: hidden;
+      position: absolute;
+      clip:     rect(0,0,0,0);
+      width:    1px;
+      height:   1px;
+      margin:   -1px;
+      border:   0;
+      padding:  0;
+    }
+    caption.a11y-hidden { position: static; }
+  </style>
+</head>
+<body>
+
+
+  <!-- 간단한 표 -->
+  <p id="compare-shoes-table" class='a11y-hidden'>국제(한국, 미국, 영국, 유럽) 성인 남성 운동화 사이즈 비교 표로 4행 12열로 구성되어 있습니다.</p>
+  <table border='1' aria-describedby="compare-shoes-table"> <!-- aria-describedby : 표에 대한 자세한 내용기술 / id값으로 연결-->
+    <caption>성인 남성 운동화 사이즈표</caption>
+    <tr>
+      <th scope="row">한국(mm)</th>
+      <td>240</td>
+      <td>245</td>
+      <td>250</td>
+      <td>255</td>
+      <td>260</td>
+      <td>265</td>
+      <td>270</td>
+      <td>275</td>
+      <td>280</td>
+      <td>285</td>
+      <td>290</td>
+    </tr>
+    <tr>
+      <th scope="row">미국(US)</th>
+      <td>6 </td>
+      <td>6.5 </td>
+      <td>7 </td>
+      <td>7.5 </td>
+      <td>8 </td>
+      <td>8.5 </td>
+      <td>9 </td>
+      <td>9.5~10 </td>
+      <td>10~10.5 </td>
+      <td>11 </td>
+      <td>11.5
+    </tr>
+    <tr>
+      <th scope="row">영국(UK)</th>
+      <td>5 </td>
+      <td>5.5 </td>
+      <td>6 </td>
+      <td>6.5 </td>
+      <td>7 </td>
+      <td>7.5 </td>
+      <td>8 </td>
+      <td>8.5~9 </td>
+      <td>9~9.5 </td>
+      <td>10 </td>
+      <td>11
+    </tr>
+    <tr>
+      <th scope="row">유럽(EU)</th>
+      <td>38~39 </td>
+      <td>39 </td>
+      <td>40 </td>
+      <td>40~41 </td>
+      <td>41 </td>
+      <td>42 </td>
+      <td>42~43 </td>
+      <td>43 </td>
+      <td>44 </td>
+      <td>44~45 </td>
+      <td>45
+    </tr>
+  </table>
+
+  <!-- 복잡한 표 -->
+  <table id="real-deal-table" border='1' aria-describedby="real-deal-table-summary">
+  <caption><strong>최근 3개월간 실거래가 <span class="open-tooltip">?</span></strong>
+    <!-- ? -->
+    <div id="real-deal-table-summary" class="a11y-hidden">
+    <h3>국토교통부 실거래가</h3>
+    <p>제공: 국토교통부<br>
+      최근 3개월간(2018.01월~03월) 신고된 국토교통부 실거래 가격자료를
+      기반으로 최저가격과 최고가격 및 거래건수를 노출합니다.</p>
+    <button type="button" class="close-tooltip" title="닫기" aria-label="닫기">X</button>
+    </div>
+    <p>실거래가 기준: 2018.03 <a href="https://goo.gl/FxWHEg " target="_blank">자료: 국토교통부</a></p>
+  </caption>
+
+  <thead>
+    <tr>
+      <th id="rd-1" scope="col" rowspan="2">공급/전용(m<sub>2</sub>)</th>
+      <th id="rd-2" scope="colgroup" colspan="3">매매 실거래가(만원)</th>
+      <th id="rd-3" scope="colgroup" colspan="3">전세 실거래가(만원)</th>
+      <th id="rd-4" scope="colgroup" colspan="3">월세 실거래가(만원)</th>
+    </tr>
+    <tr>
+      <th id="rd-2-1" scope="col">최저가</th><th id="rd-2-2" scope="col">최고가</th><th id="rd-2-3" scope="col">거래건수</th>
+      <th id="rd-3-1" scope="col">최저가</th><th id="rd-3-2" scope="col">최고가</th><th id="rd-3-3" scope="col">거래건수</th>
+      <th id="rd-4-1" scope="col">최저가</th><th id="rd-4-2" scope="col">최고가</th><th id="rd-4-3" scope="col">거래건수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>80/59.91</td>
+      <td headers="rd-1 rd-2" colspan="3">-</td>
+      <td headers="rd-1 rd-3 rd-3-1">43,000(2층)</td>
+      <td headers="rd-1 rd-3 rd-3-2">43,000(2층)</td>
+      <td headers="rd-1 rd-3 rd-3-3">1</td>
+      <td headers="rd-1 rd-4" colspan="3">-</td>
+    </tr>
+    <tr>
+      <td>84/59.99</td>
+      <td headers="rd-1 rd-2 rd-2-1">47,800(4층)</td>
+      <td headers="rd-1 rd-2 rd-2-2">55,000(22층)</td>
+      <td headers="rd-1 rd-2 rd-2-3">10</td>
+      <td headers="rd-1 rd-3 rd-3-1">43,000(2층)</td>
+      <td headers="rd-1 rd-3 rd-3-2">43,000(2층)</td>
+      <td headers="rd-1 rd-3 rd-3-3">1</td>
+      <td headers="rd-1 rd-4 rd-4-1">5,000/120(6층)</td>
+      <td headers="rd-1 rd-4 rd-4-2">40,000/10(4층)</td>
+      <td headers="rd-1 rd-4 rd-4-3">5</td>
+    </tr>
+    <tr>
+      <td>111/84.82</td>
+      <td headers="rd-1 rd-2 rd-2-1">63,200(12층)</td>
+      <td headers="rd-1 rd-2 rd-2-2">63,500(19층)</td>
+      <td headers="rd-1 rd-2 rd-2-3">2</td>
+      <td headers="rd-1 rd-3 rd-3-1">53,000(13층)</td>
+      <td headers="rd-1 rd-3 rd-3-2">53,000(13층)</td>
+      <td headers="rd-1 rd-3 rd-3-3">1</td>
+      <td headers="rd-1 rd-4" colspan="3">-</td>
+    </tr>
+    <tr>
+      <td>112/84.92</td>
+      <td headers="rd-1 rd-2 rd-2-1">65,000(6층)</td>
+      <td headers="rd-1 rd-2 rd-2-2">65,000(6층)</td>
+      <td headers="rd-1 rd-2 rd-2-3">1</td>
+      <td headers="rd-1 rd-3 rd-3-1">52,000(10층)</td>
+      <td headers="rd-1 rd-3 rd-3-2">52,000(10층)</td>
+      <td headers="rd-1 rd-3 rd-3-3">1</td>
+      <td headers="rd-1 rd-4" colspan="3">-</td>
+    </tr>
+    <tr>
+      <td>112/84.94</td>
+      <td headers="rd-1 rd-2 rd-2-1">60,000(25층)</td>
+      <td headers="rd-1 rd-2 rd-2-2">60,000(25층)</td>
+      <td headers="rd-1 rd-2 rd-2-3">1</td>
+      <td headers="rd-1 rd-3 rd-3-1">45,000(10층)</td>
+      <td headers="rd-1 rd-3 rd-3-2">45,000(10층)</td>
+      <td headers="rd-1 rd-3 rd-3-3">1</td>
+      <td headers="rd-1 rd-4 rd-4-1">35,000/60(5층)</td>
+      <td headers="rd-1 rd-4 rd-4-2">35,000/60(5층)</td>
+      <td headers="rd-1 rd-4 rd-4-3">1</td>
+    </tr>
+    <tr>
+      <td>145/114.98</td>
+      <td headers="rd-1 rd-2 rd-2-1">76,800(15층)</td>
+      <td headers="rd-1 rd-2 rd-2-2">80,000(14층)</td>
+      <td headers="rd-1 rd-2 rd-2-3">2</td>
+      <td headers="rd-1 rd-3" colspan="3">-</td>
+      <td headers="rd-1 rd-4 rd-4-1">5,000/200(5층)</td>
+      <td headers="rd-1 rd-4 rd-4-2">5,000/200(5층)</td>
+      <td headers="rd-1 rd-4 rd-4-3">1</td>
+    </tr>
+  </tbody>
+  </table>
+</body>
+</html>
