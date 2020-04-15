@@ -338,7 +338,7 @@ https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
 
 ---------------------------------------
 
-<details open>
+<details>
 <summary>13일차 학습</summary>
 <div markdown="13">
 
@@ -374,8 +374,8 @@ https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
 
 - `flex-flow` 속기형
     ```CSS
-      .item { flex-flow: direction wrap; }
-      .container { flex-flow:row nowrap; }
+    .item { flex-flow: direction wrap; }
+    .container { flex-flow:row nowrap; }
     ```   
 
 
@@ -415,26 +415,163 @@ https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
 
 
 - [참고 예제]
- - https://codepen.io/dreamfulbud/pen/WNQrvqG?editors=1100
- - https://codepen.io/dreamfulbud/pen/VwvevXY
+  - https://codepen.io/dreamfulbud/pen/WNQrvqG?editors=1100
+  - https://codepen.io/dreamfulbud/pen/VwvevXY
 
 </div>
 </details>
 
 ---------------------------------------
 
-<details>
+<details open>
 <summary>14일차 학습</summary>
 <div markdown="14">
 
 #### [그리드 레이아웃]
-- IE 10+ 이상에서 사용가능
+- IE 10+ 이상에서 사용가능   
 
-##### 01. CSS 레이아웃의 역사 / W3C 표준 기술 결정 절차 / Autoprefixer 도구
+##### 01-1. CSS 레이아웃의 역사
+1. 레이아웃 도구가 없던 시절
+  - 레이아웃을 위한 디자인 방법 없이 타이포 그래피와 정렬만 가능.
+
+2. 테이블 기반 레이아웃
+  - 본 목적과는 다르게 테이블로 레이아웃을 만들던 시대.
+  - 여백을 투명한 gif 이미지로 만듦.
+  - 의미 상실, 접근성 부재
+
+3. 프레임 기반 레이아웃
+  - 여러 장의 HTML 페이지를 'frame'을 사용하여 한 페이지에 결합하여 레이아웃을 만듦.
+
+4. 플로트, 포지션 기반 레이아웃
+  - float, clear, position, Box Model 등을 사용하여 레이아웃을 만듦.
+  - 브라우저 특성(버그)에 기반엔 비논리적 기법이 난무.
+
+5. 플렉스 박스 레이아웃
+  - 플렉시블 박스 모델을 사용하면 컨텐츠를 균등하게 분배하고 사용가능한 공간을 활용할 수 있음.(1차원)
+  - **X 또는 Y축. 한쪽 방향으로만 설정 가능** 한 자유도가 낮은 레이아웃 기법.
+
+6. **CSS 그리드 레이아웃**
+  - HTML 마크업 순서와 무관하게 내부에 포함된 자식 아이템을 그리드 내부 어디든 위치 시킬 수 있음(2차원)
+  - **X 그리고 Y축. 양쪽방향 모두 설정 가능** 한 자유도가 높은 레이아웃 기법.   
+
+##### 01-2. W3C 표준 기술 결정 절차
+1. WD(Working Draft)
+2. **CR(Candidate Recommendation)** : 워킹그룹 결정, 책임자 승인
+3. PR(Proposed Recommendation)
+4. REC(W3C Recommendation)
+- 현재 CSS Grid는 CR 상태
+
+##### 01-3. Autoprefixer 도구
+- [Autoprefixer CSS online] https://autoprefixer.github.io
+
+---
+
 ##### 02. CSS Grid 용어(Terminology)
+- Grid
+  - HTML 요소에 display 속성값으로 grid를 설정하면 grid-container가 되며, row, column을 가진다.
+  - 포함된 자식 요소는 그리드 grid-item이 된다.
+- Grid 라인 (lines) : Grid를 행(rows)/열(columns)로 나누는 수평, 수직 선.
+- Grid 셀 (cell) : Grid를 구성하는 단일 유닛(single unit).
+- Grid 영역 (area) : Grid 라인이 감싸는 사각형 영역. Grid 영역은 여러 개의 Grid 셀을 포함할 수 있음.
+- Grid 트랙 (track) : 2개의 그리드 라인 사이 공간. 이 공간은 수평/수직 방향 모두.
+- Grid 행 (로우, row) : 1개의 Grid 수평 트랙.
+- Grid 열 (컬럼,column) : 1개의 Grid 수직 트랙.
+- 거터 (Gutter) : Grid 행과 열 사이 공간.
+  - `grid-gap` 속성으로 제어
+
+- [참고] https://codepen.io/dreamfulbud/pen/GRpooGx
+
+---
 ##### 03. grid, row/column 템플릿 설정
+- `gird`
+  - `block-grid` / `inline-grid` / `subgrid`(CSS Lv2에서 지원예정)   
+
+    ```css
+    .block-grid { display: grid; }
+    .inline-grid { display: inline-grid; }
+    ```
+  - overflow 속성은 그리드 컨테이너 적용 가능.
+  - float, clear, column, vertical-align 속성은 그리드 컨테이너 요소에 적용되지 않음.
+  - grid 공부 시 firefox 브라우저 사용. grid의 정보를 시각적으로 확인할 수 있음.
+
+- `row/column`
+  - 공백으로 구분된 값 리스트를 해석하여 그리드 행(row), 열(Column)을 설정. 각 값은 트랙 크기를 말함.
+  - `<track-size>` : 그리드에서 사용 가능한 공간의 길이(px, rem, em, %, `fr` 등)
+  - `<line-name>` : 사용자가 설정한 임의의 선 이름.   
+
+    ```CSS
+    .grid{
+      display: grid;
+      /* 2행 */
+      grid-template-rows:10rem 10rem;
+      /* 3열 */
+      grid-template-columns: 10rem auto 10rem;
+    }
+    ```
+
+---
+
 ##### 04. gutters, fr 단위, repeat() 함수사용법
+- gutters
+  - grid-row-gap /  grid-column-gap / grid-gap(속기형)
+  ```CSS
+  .grid{
+      display: grid;
+      /*
+      grid-row-gap:2rem;
+      grid-column-gap:4rem;
+      */
+      grid-gap:2rem 4rem;
+  }
+  ```
+
+- `fr`(Fraction) 단위
+  - 컨테이너 너비를 기준으로 비율 단위
+  ```CSS
+  .grid{
+      display: grid;
+      grid-template-rows:1fr 4fr;
+      grid-template-columns:1fr 2fr 3fr;
+  }
+  ```
+- `repeat()` 함수
+  - repeat(반복횟수(양수), 그리드 트랙 리스트(배열))
+  ```CSS
+  .grid{
+      display: grid;
+      grid-template-rows:repeat(2, 1fr);
+      grid-template-columns:repeat(3, 1fr 2fr); /* (1fr 2fr) (1fr 2fr) (1fr 2fr) */
+  }
+  ```
+
+---
+
 ##### 05. minmax() 함수 사용법, 암시적으로 row/column 자동 행/열 길이 설정
+- `minmax()` 함수 : 최소값과 최대값 지정
+  - minimax(최소값, 최대값)
+  ```CSS
+  .grid{
+      display: grid;
+      grid-template-rows: repeat(2,minimax(20px, auto));
+      grid-template-columns:minmax(30px, auto) repeat(3, 1fr);
+  }
+  ```
+
+- 암시적으로 row/column 자동 행/열 길이 설정
+  - `grid-auto-rows`/ `grid-auto-column`
+  - 암시적인 그리드 행/열 트랙 크기를 자동으로 설정
+  - min-content : 컨텐츠에 맞게
+  ```CSS
+  .grid{
+      display: grid;
+      grid-template-rows: repeat(2,minimax(20px, auto));
+      grid-template-columns:minmax(30px, auto) repeat(3, 1fr);
+      grid-auto-rows: minmax(10rem, auto);
+      grid-auto-columns: minmax(10rem, auto);
+  }
+  ```
+
+
 </div>
 </details>
 
@@ -445,7 +582,6 @@ https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
 <div markdown="15">
 
 #### [그리드 레이아웃]
-
 ##### 06. 그리드 라인 인덱스를 사용하여 아이템 위치 설정
 ##### 07. 오더 속성을 사용한 아이템 순서 변경 / 그리드 영역 / 그리드 템플릿 영역을 사용하여 아이템 위치 설정
 ##### 08. 그리드 흐름 자동 배치 알고리즘 활용
