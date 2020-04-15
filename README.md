@@ -5,6 +5,17 @@
 
 #### 3주차 질문
 - Q. `column-fill`은 무슨 속성인가요? 속성값을 'auto / balance / balance-all' 수정해봐도 차이를 모르겠어요;;
+```
+A. column-fill 속성은 다단 영역 콘텐츠 흐름의 영향을 받는 방식을 지정하는 속성입니다.
+방식은 크게 auto와 balance가 있습니다.
+auto는 기본 값으로, 단의 길이가 다른 단의 길이에 따라 서로 다르게 표현될 수 있으며 단이 순서대로 채워집니다.
+두 번째로 balance는 단의 높이가 다른 단의 크기에 따라 균형을 이루도록 단이 순서대로 채워집니다.
+아래 GitBook에 balance와 auto를 적용한 경우 차이점을 보여주는 예시가 있으니 참고하시기 바랍니다.
+https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
+```
+
+- Q. `row-reverse` `column-reverse` `order` 속성들을 사용해 순서를 바꾼 경우, 키보드 Tab 진행은 이와 상관없이 마크업 순서로 되는데,
+시각적으로 보이는 순서대로 키보드를 진행시키려면 javascript로 변경해야하는건가요?
 
 ---------------------------------------
 
@@ -138,7 +149,7 @@
 
 ---------------------------------------
 
-<details open>
+<details>
 <summary>12일차 학습</summary>
 <div markdown="12">
 
@@ -327,13 +338,85 @@
 
 ---------------------------------------
 
-<details>
+<details open>
 <summary>13일차 학습</summary>
 <div markdown="13">
 
-#### [플렉시블 레이아웃 Lecture1]
-#### [플렉시블 레이아웃 Lecture2]
-#### [플렉시블 레이아웃 Lecture3]
+#### [플렉시블 레이아웃]
+- IE 10+ 이상에서 사용가능
+- Flexbox는 페이지의 한 방향(x, y축)으로 요소를 효율적으로 배치 할 수 있도록 설계
+
+##### flex-container 속성
+- `display:flex`
+  - flex container / flex items로 구성
+  - 직계 **자식** 요소만 flex-item이 됨.
+  - flow axis - 주축(main axis), 교차축(cross axis) - start / center / end   
+
+- `flex-direction`
+  - row(기본값) / column / row-reverse / column-reverse
+  - direction 설정에 따라 주축 방향 변경됨.   
+
+- `justify-content` 주축에 대한 정렬.
+  - flex-start / center / flex-end
+  - space-between : 시작과 끝을 제외하고 여백 균등 배분
+  - space-around : item 요소 좌우 동일한 여백
+  - space-evenly : 시작~끝 간격 모두 동일하게   
+
+- `flex-wrap`
+  - nowrap(기본값) / wrap / wrap-reverse
+  - flex-item 요소는 flex-shrink값이 1로 기본 설정되어있기 때문에 너비값이 있다고 해도 부모요소인 flex-container에 맞춰 자동으로 설정됨.
+
+- `align-items` - 요소 정렬
+  - flex-start / flex-end / center / baseline / stretch
+
+- `align-content` - 덩어리 정렬.
+  - flex-start / flex-end / center / space-between / space-around / space-evenly / stretch
+
+- `flex-flow` 속기형
+    ```CSS
+      .item { flex-flow: direction wrap; }
+      .container { flex-flow:row nowrap; }
+    ```   
+
+
+##### flex-item 속성
+- `flex-basis` : flex-item은 width 사용 X   
+
+  ```css
+    .item{flex-basis: 100px;}
+  ```
+
+- `align-self` - 다른 아이템과 상관없이 독자적으로 정렬.
+  - auto / flex-start / flex-end / center / baseline / stretch   
+
+- `flex-grow` - 요소 키움
+  - 기본값 0
+  - 1 : 자동으로 늘어나 flex-container에 맞춤   
+
+- `flex-shrink` - 요소 축소
+  - 기본값 1 : 자동으로 축소되어 flex-container에 맞춤   
+  - 0 : width값 줄어들지 않음.
+
+- `flex` 속기형
+  ```CSS
+    .item { flex: flex-grow [flex-shrink] [flex-basis]; }
+    .item { flex: 0 0 20%}
+  ```
+
+- `order`
+  - 기본값 0
+  - 숫자가 작을수록 우선 배치
+  - 동일한 값을 가지고 있다면 마크업된 순서로 우선권을 가짐.
+
+- **가운데 정렬** (텍스트 세로-중앙 정렬 가능!!!!)
+  ```CSS
+    .item {display:flex; justify-content:center; align-items:center;}
+  ```
+
+
+- [참고 예제]
+ - https://codepen.io/dreamfulbud/pen/WNQrvqG?editors=1100
+ - https://codepen.io/dreamfulbud/pen/VwvevXY
 
 </div>
 </details>
@@ -344,12 +427,14 @@
 <summary>14일차 학습</summary>
 <div markdown="14">
 
-#### [그리드 레이아웃 Lecture1]
-#### [그리드 레이아웃 Lecture2]
-#### [그리드 레이아웃 Lecture3]
-#### [그리드 레이아웃 Lecture4]
-#### [그리드 레이아웃 Lecture5]
+#### [그리드 레이아웃]
+- IE 10+ 이상에서 사용가능
 
+##### 01. CSS 레이아웃의 역사 / W3C 표준 기술 결정 절차 / Autoprefixer 도구
+##### 02. CSS Grid 용어(Terminology)
+##### 03. grid, row/column 템플릿 설정
+##### 04. gutters, fr 단위, repeat() 함수사용법
+##### 05. minmax() 함수 사용법, 암시적으로 row/column 자동 행/열 길이 설정
 </div>
 </details>
 
@@ -359,10 +444,11 @@
 <summary>15일차 학습</summary>
 <div markdown="15">
 
-#### [그리드 레이아웃 Lecture6]
-#### [그리드 레이아웃 Lecture7]
-#### [그리드 레이아웃 Lecture8]
-#### [그리드 레이아웃 Lecture9]
+#### [그리드 레이아웃]
 
+##### 06. 그리드 라인 인덱스를 사용하여 아이템 위치 설정
+##### 07. 오더 속성을 사용한 아이템 순서 변경 / 그리드 영역 / 그리드 템플릿 영역을 사용하여 아이템 위치 설정
+##### 08. 그리드 흐름 자동 배치 알고리즘 활용
+##### 09. 아이템들 & 콘텐츠 행, 열 방향 정렬 / 아이템 개별 행, 열 방향 정렬 / grid 속기형 속성 활용법
 </div>
 </details>
