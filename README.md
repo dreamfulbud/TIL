@@ -16,6 +16,17 @@ https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
 
 - Q. `row-reverse` `column-reverse` `order` 속성들을 사용해 순서를 바꾼 경우, 키보드 Tab 진행은 이와 상관없이 마크업 순서로 되는데,
 시각적으로 보이는 순서대로 키보드를 진행시키려면 javascript로 변경해야하는건가요?
+```
+A.  시각적으로 보이는 순서대로 키보드 초점이 이동하도록 하려면 javascript를 사용하여야 합니다.
+그러나 개인적인 의견으로 권하고 싶지 않습니다.
+이 부분은 예전에 접근성 관련 멘토들 사이에서 이슈가 된 적이 있습니다.
+다양한 의견이 있었던 부분인지라 정답이 무엇이라고 말씀드리기는 조심 스럽습니다.
+개인적인 의견을 드린다면 저는 너무 일관성 없이 초점이 위아래 왼쪽 오른쪽으로 움직이는 것은 바람직 하지 않으나
+한 눈에 파악할 수 있는 수준으로 위 아래 또는 왼쪽 오른쪽으로 움직이는 수준은 접근성 관련 문제가 있다고 생각하지는 않습니다.
+일부 혼란을 유발할 수는 있지만 접근이 불가능하거나 콘텐츠에대해 이해가 어려운 수준의 문제는 아니라는 판단입니다.
+물론 제 의견과 다른 전문가의 의견이 있을 수 있으니 그저 참고만 하시기 바랍니다.
+결론은 너무 일관성 없는 순서의 변경은 권장하고 싶지 않으나 순서 변경 자체를 접근성 관점에서 문제 삼는 것은 맞지 않다고 생각합니다.
+```
 
 ---------------------------------------
 
@@ -423,7 +434,7 @@ https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
 
 ---------------------------------------
 
-<details open>
+<details>
 <summary>14일차 학습</summary>
 <div markdown="14">
 
@@ -483,7 +494,7 @@ https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
 
 ---
 ##### 03. grid, row/column 템플릿 설정
-- `gird`
+- `grid`
   - `block-grid` / `inline-grid` / `subgrid`(CSS Lv2에서 지원예정)   
 
     ```css
@@ -577,14 +588,176 @@ https://seulbinim.github.io/WSA/multi-column.html#column-fill-%EC%86%8D%EC%84%B1
 
 ---------------------------------------
 
-<details>
+<details open>
 <summary>15일차 학습</summary>
 <div markdown="15">
 
 #### [그리드 레이아웃]
 ##### 06. 그리드 라인 인덱스를 사용하여 아이템 위치 설정
-##### 07. 오더 속성을 사용한 아이템 순서 변경 / 그리드 영역 / 그리드 템플릿 영역을 사용하여 아이템 위치 설정
+- Grid Lind : 그리드 라인을 기준으로 하여 그리드 아이템 위치를 설정할 수 있음.
+  - grid-column-start / grid-column-end / grid-row-start / grid-row-end
+  - grid-column / grid-row / 속기형
+  - grid-area : row-start / column-start / row-end / column-end   
+    ```CSS
+      .grid{ display: grid; grid-template-columns: repeat(3,150px);grid-template-rows:repeat(2,150px);}
+      .item:nth-child(1){
+        /*
+        grid-column-start:3; grid-column-end:4;
+        grid-row-start:2; grid-row-end:3;
+        */
+        /* grid-column: 3/4; grid-row:2/3;
+        */
+        grid-area:3/4/2/3;
+      }
+    ```
+- Grid Span : 그리드 라인 속성에 span을 사용하여 기준점에서 상대적으로 위치 설정이 가능.
+  - span 1이 기본값.
+  - grid 음수값 사용 가능 -1 : 끝 , -2: 끝에서 두번째(명시적 그리드 기준.)
+  ```CSS
+    .grid{ display: grid; grid-template-columns: repeat(3,150px);grid-template-rows:repeat(2,150px);}
+    .item:nth-child(1){
+      /* 열 3을 기준으로 하여 +2(↓) 그리드 트랙 설정*/
+      grid-column: 3 / span 2;
+      /* 행 4를 기준으로 하여 -2(↑) 그리드 트랙 설정*/
+      grid-row: span 2 / 4;
+    }
+  ```
+
+---
+
+##### 07_1. 오더 속성을 사용한 아이템 순서 변경
+- `order` : 그리드 아이템 순서 설정(자동배치 내)
+  - **순서를 변경해도 접근성에 문제가 발생하지 않는 경우에만 사용해야한다.**
+  - 숫자가 작을수록 우선순위 높음. 앞에 배치
+
+##### 07_2. 그리드 영역
+- `grid-area` : row-start / column-start / row-end / column-end   
+
+  ```CSS
+    .header{grid-area : 2/1/4/2;}
+  ```
+
+##### 07_3. 그리드 템플릿 영역을 사용하여 아이템 위치 설정
+- `grid-template-areas`
+  - `grid-area` 속성으로 설정된 그리드 영역의 이름을 참조하여, 그리드 템플릿 영역을 설정.
+  - 그리드 영역 이름을 반복하면 그리드 셀을 병합.
+  - 마침표(.) : 비어있는 그리드 셀
+  - none : 그리드 영역으로 정의되지 않은 셀
+  ```CSS
+    .grid{
+      grid-template-areas:
+      "header header ."
+      "sidebar content1 content2"
+      "sidebar content3 content3"
+      "none footer footer";
+    }
+    .header{grid-area:header;}
+    .sidebar{grid-area:sidebar;}
+    .content-1{grid-area:content1;}
+    .content-2{grid-area:content2;}
+    .content-3{grid-area:content3;}
+    .footer{grid-area:footer;}
+  ```
+
+
+---
+
 ##### 08. 그리드 흐름 자동 배치 알고리즘 활용
-##### 09. 아이템들 & 콘텐츠 행, 열 방향 정렬 / 아이템 개별 행, 열 방향 정렬 / grid 속기형 속성 활용법
+- `grid-auto-flow`
+  - 그리드에 명시적으로 배치되지 않은 아이템이 있을 경우, 자동 배치 알고리즘이 실행되어 자동으로 배치되도록 설정할 수 있음. 속성 값에 따라 자동 배치 알고리즘 작동 방식이 달라짐.
+  - row(기본값) / column / dense / row dense / colum dense
+  - dense(의미:밀집하다. 빈곳을 채움) - 배치 중 나중에 크기가 작은 아이템이 존재할 경우, 그리드 영역 앞부분의 남은 공간에 자동 배치하는 알고리즘.
+
+---
+
+##### 09_1. 아이템들 & 콘텐츠 행, 열 방향 정렬  /
+- `justify-items` : start / center / end / stretch(기본값) - 행
+  - 행 축을 따라 그리드 아이템 내부 콘텐츠를 정렬.
+  - 이 설정은 그리드 컨테이너 내부 모든 그리드 아이템에 적용
+
+- `align-items` : start / center / end / stretch(기본값) - 열
+  ```CSS
+    .grid{
+      display: grid;
+      justify-items:center;
+      align-items: center;
+    }
+    .item{
+      display: grid;
+      justify-items:center;
+      align-items: center;
+    }
+  ```
+- `justify-content` : start / center / end / stretch / space-around / space-between / space-evenly
+  - **그리드 컨테이너의 크기보다 작은 그리드 아이템 트랙**(px과 같은 고정 단위로 설정된 경우)의 크기라면, 아이템 트랙을 정렬 할 수 있음.
+  - 이 속성은 행 축을 따라 그리드 아이템 트랙을 정렬.
+
+- `align-content` : start / center / end / stretch / space-around / space-between / space-evenly   
+
+
+##### 09_2. 아이템 개별 행, 열 방향 정렬
+- `justify-slef` / `align-slef`   
+
+  ```CSS
+    .item.item-1{justify-self:center; align-slef:center;}
+  ```   
+
+
+##### 09_3. grid 속기형 속성 활용법
+- `grid-template-rows` / `grid-template-columns` / `grid-template-areas`
+-  `grid-auto-rows` / `grid-auto-columns` / `grid-auto-flow`를 모두 일괄 설정할 수 있는 속기형 속성
+  - none
+  - `<grid-template-rows>` / `<grid-template-columns>`
+  - `<grid-auto-flow>` [`grid-auto-rows` / [`grid-auto-columns`]]   
+
+    - 2행 3열 그리드
+      ```CSS
+        /**/
+        .grid-container{
+          grid-template-rows: 200px auto;
+          grid-template-columns: 1fr auto 1fr;
+          grid-template-areas:none;
+        }
+        /*속기형*/
+        .grid-container{ grid: 200px auto / 1fr auto 1fr; }
+      ```   
+
+    - column 자동 배치 알고리즘 설정에 암시적인 행/열 크기 설정
+      ```CSS
+        .grid-container{
+          grid-auto-flow: column;
+          grid-auto-rows: 1fr;
+          grid-auto-columns: auto;
+        }
+        /*속기형*/
+        .grid-container{ grid: column 1fr / auto; }
+      ```
+
+    - 사용자가 임의로 설정한 선 이름`[이름]`을 사용할 수있다.
+      ```CSS
+        .grid-container{
+          grid-template-rows: [row-1-start] 25% [row-1-end] 100px [third-line] auto [last-line];
+          grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
+        }
+      ```
+
+    - 좀 더 복잡한 형태
+      ```CSS
+        .grid-container{
+          grid-template-rows: [row-1-start] 1fr [row-1-end row-2-start] 60px [row-2-end];
+          grid-template-columns: auto 100px auto;
+          grid-template-areas:
+            "header header header"
+            "footer footer footer";
+        }
+
+        /*속기형*/
+        .grid-container{
+          grid:
+            [row-1-start] "header header header" 1fr [row-1-end]
+            [row-2-start] "footer footer footer" 60px [row-2-end]
+            / auto 100px auto;
+        }
+      ```
 </div>
 </details>
