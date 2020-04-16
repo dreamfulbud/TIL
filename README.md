@@ -712,7 +712,6 @@ A.  시각적으로 보이는 순서대로 키보드 초점이 이동하도록 �
 
     - 2행 3열 그리드
       ```CSS
-        /**/
         .grid-container{
           grid-template-rows: 200px auto;
           grid-template-columns: 1fr auto 1fr;
