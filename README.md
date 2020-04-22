@@ -16,6 +16,18 @@
     background:var(--bg-image) no-repeat center;
   }
   ```
+  ```
+  해당 예시는 CSS에서 새롭게 제공하는 변수 선언 방식을 의미합니다.
+  :root라는 가상 클래스를 사용하여 문서 트리의 루트 요소를 선택자로 지정한 후 변수 선언 및 값을 할당합니다.
+  이 때 변수 선언은 전역(global)인 :root에서만 가능합니다.
+  그 후 원하는 선택자에 변수에 선언한 값을 사용하고자 할 경우 var( )함수를 사용하여 변수를 참조하는 것입니다.
+  이렇게 변수를 사용하면 중복된 값을 일일이 지정하지 않아도 된다는 장점이 생기고 값의 수정도 용이해집니다.
+  이런 변수 방식은 Sass나 Less 등 CSS 전처리기에서 이미 사용하고 있는 방식이지만 CSS 표준에도 드디어 등장한 것입니다.
+  다만 IE는 Edge15이상에서만 사용할 수 있습니다.
+  아래 URL을 한번 살펴보시기 바랍니다.
+  https://developer.mozilla.org/ko/docs/Web/CSS/:root
+  https://developer.mozilla.org/ko/docs/Web/CSS/var
+  ```
 ---------------------------------------
 
 ## 반응형 디자인(RWD)
@@ -172,7 +184,7 @@
 
 ---------------------------------------
 
-<details open>
+<details>
 <summary>17일차 학습</summary>
 <div markdown="17">
 
@@ -222,12 +234,94 @@
 
 ---------------------------------------
 
-<details>
+<details open>
 <summary>18일차 학습</summary>
 <div markdown="18">
 
 ### 중단점과 미디어 쿼리
+#### ▷ 브레이크 포인트
+- RWD 프로젝트 진행 전, 주요 사용자 층이 사용하는 디바이스 환경을 분석한 후, 최적화되고 유효한 중단점(Breakpoint)을 설계(Design) 한다.
 
+#### ▷ CSS3 미디어쿼리
+- 미디어 쿼리는 각 디바이스 환경을 식별하는 조건 처리 구문으로 CSS3에서 정식 지원함. 이를 사용하여 설계된 중단점에는 맞는 최적화된 뷰 디자인을 구현할 수 있다.
+```
+  @media {type} and (expression){ css code }
+
+  - type : screen/printer/tv/integration css rule / projector
+  - expression : width/height/color/aspect ratio/resolution/orientation
+```
+- W3C 표준 미디어쿼리 사양
+  | Feature | Value | Min/Max | Description |
+  |---|---|---|------|
+  |width|length|yes|Display width|
+  |height|length|yes|Display height|
+  |orientation|portrait or landscape| **no** |Device orientation|
+  |aspect-ratio|ratio(w/h)|yes|Ratio of width to height|
+  |Device-aspect-ratio|ratio(w/h)|yes|Ratio of device-width to device-height|
+  |color|integer|yes|Number of bits per color component|
+  |color-index|integer|yes|Number of entries in the output device's color lookup table|
+  |monochrome|integer|yes|Number of bits per pixel in the monochrome frame buffer|
+  |resolution|resolution|yes|Density of pixel of output device, (integer followed by dpi or dpcm)|
+
+  ```css
+    /* width */
+    @media screen and (min-width:200px) and (max-width:400px){ }
+
+    /* height */
+    @media (min-height:500px) and (max-height:580px){ }
+
+    /* portrait */
+    @media screen and (orientation : portrait) { }
+
+    /* landscape */
+    @media screen and (orientation : landscape) { }
+
+    /* 300 DPI */
+    @media print and (min-resolution : 300dpi) { }
+
+    /* x2 Device Pixel Density */
+    @media screen and (min-resolution : 2ddpx) { }
+
+    /* AND */
+    @media all and (color) { }
+    /* NOT + AND */
+    @media not screen and (color) { }  
+    /* ONLY + AND */
+    @media only screen and (orientation:portrait) { }  
+    /* COMMA */
+    @media all and (orientation:landscape),
+           all adn (min-width:480px) { }  
+  ```
+
+#### ▷ 모바일 퍼스트(Mobile First)
+- 현 시대 사용자 대부분이 모바일 환경에서 우선 접속.(일상)
+- 필요에 따라서는 데스크탑 환경이 필요(업무) 할 수 있으나, 사용자를 고려한 설계 관점에서 사용자 대다수가 우선하는 모바일 환경 디자인(설계)이 우선시 되어야 함.
+
+#### ▷ 중단점 설계
+- 서비스를 이용하는 주 고객층의 행동 패턴을 분석하여 모바일, 태블릿, 데스크탑, 와이드 스크린 사용율 통계를 검토한 후,  기기의 속성(스크린 폭, 해상도 등)을 고려하여 중단점을 설계해야 함.
+  - 중단점 설계를 위한 참고 자료
+    - http://gs.statcounter.com  
+    - http://www.w3counter.com/globalstats.php?year=2018&month=3
+    - http://www.internettrend.co.kr/trendForward.tsp
+    - http://troy.labs.daum.net
+
+  - 고려해야 할 중단점
+    - ⇐  (640) / 800  ⟺  (1024) / 1366  ⟺  1920  ⇒
+    - ※ 중단점은 최소한으로 설정할 필요가 있다. 중단점이 많아지게 되면 기획/디자인/개발 과정이 모두 고통스러워지기 때문.
+  - 고민해야 할 사용자 행동 패턴
+    - 1920 스크린 해상도를 사용하는 사용자가 풀 스크린으로 브라우저를 화면 가득 띄워놓고 사용하는지 확인 필요.
+    - 그렇지 않다면 1366 기준으로 설계하되, 1920까지 고려하는 방향으로 전략 수립.
+
+  - 예시 : 중단점 및 미디어 쿼리 설계 (사용자 환경, 시대에 따라 변경됨)
+    ```css
+    /*
+    800 ⟺ 1024 ⟺  1600
+    50em ⟺ 64em ⟺ 100em
+    */
+    @media ( min-width: 50em ){}
+    @media ( min-width: 64em ){}
+    @media ( min-width: 100em ){}
+    ```
 </div>
 </details>
 
@@ -254,8 +348,8 @@
 ---------------------------------------
 
 <details>
-<summary>19일차 학습</summary>
-<div markdown="19">
+<summary>20일차 학습</summary>
+<div markdown="20">
 
 ## 웹 콘텐츠 접근성 지침(WCAG)
 ### 인식 (Perceivable)
