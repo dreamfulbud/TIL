@@ -1,8 +1,7 @@
 # TIL
 오늘 내가 배운 것들(Today I Learned)   
 ---------------------------------------
-## [1주차]
-### 구조 디자인(HTML)
+### [1주차] : 구조 디자인(HTML)
 - HTML 이란?
 - 기본 문법
 - 텅 빈 요소
@@ -28,11 +27,10 @@
 - 유저 인터랙션 속성
 - 문서 메타데이터 요소들
 
-[WEEK01](https://github.com/dreamfulbud/TIL/WEEK01.md) : 1주차
+[WEEK01](https://github.com/dreamfulbud/TIL/blob/master/WEEK01.md) : 1주차
 
 ---------------------------------------
-## [2주차]
-### 표현 디자인(CSS)
+### [2주차] : 표현 디자인(CSS)
 - CSS란?
 - 기본 문법 & 스타일 방법
 - 심플 선택자
@@ -50,12 +48,11 @@
 - 테이블 스타일링
 - 폼 스타일링
 
-[WEEK02](https://github.com/dreamfulbud/TIL/WEEK02.md) : 2주차
+[WEEK02](https://github.com/dreamfulbud/TIL/blob/master/WEEK02.md) : 2주차
 
 ---------------------------------------
 
-## [3주차]
-### 표현 디자인(CSS)
+### [3주차] : 표현 디자인(CSS)
 - 2D 트랜스폼
 - 트랜지션
 - 애니메이션
@@ -66,12 +63,11 @@
 - 플렉시블 레이아웃
 - 그리드 레이아웃
 
-[WEEK03](https://github.com/dreamfulbud/TIL/WEEK03.md) : 3주차
+[WEEK03](https://github.com/dreamfulbud/TIL/blob/master/WEEK03.md) : 3주차
 
 ---------------------------------------
 
-##[4주차]
-### 반응형 디자인(RWD)
+### [4주차] : 반응형 디자인(RWD)
 - 반응형 웹이란?
 - 콘텐츠 구성
 - 유연한 그리드
@@ -81,18 +77,18 @@
 - 장치 독립적 픽셀
 - 중단점과 미디어 쿼리
 
-### WAI-ARIA(RIA를 위한 접근성 권고안)
+#### WAI-ARIA(RIA를 위한 접근성 권고안)
 - WAI-ARIA 소개
 - WAI-ARIA 사용 규칙
 - WAI-ARIA 자동완성 UI
 - WAI-ARIA 데이터 검증 결과
 - WAI-ARIA 레이어 팝업
 
-### 웹 콘텐츠 접근성 지침(WCAG)
+#### 웹 콘텐츠 접근성 지침(WCAG)
 - WCAG란?
 - 1. 인식 (Perceivable)
 - 2. 운용 (Operable)
 - 3. 이해 (Understandable)
 - 4. 견고 (Robust)
 
-[WEEK04](https://github.com/dreamfulbud/TIL/WEEK04.md) : 4주차
+[WEEK04](https://github.com/dreamfulbud/TIL/blob/master/WEEK04.md) : 4주차
