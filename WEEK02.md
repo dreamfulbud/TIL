@@ -26,7 +26,7 @@
 ---------------------------------------
 
 ## 표현 디자인(CSS)
-<details>
+<details open>
 <summary>6일차 학습</summary>
 <div markdown="6">
 
@@ -128,7 +128,7 @@
 </details>
 
 ---------------------------------------
-<details>
+<details open>
 <summary>7일차 학습</summary>
 <div markdown="7">
 
@@ -253,7 +253,7 @@
 </details>
 
 ---------------------------------------
-<details>
+<details open>
 <summary>8일차 학습</summary>
 <div markdown="8">
 
@@ -267,7 +267,7 @@
   - 너비(width) / 높이(height) 설정이 가능.
   - 내부에 콘텐츠를 포함하지 않을 경우 높이는 `0`   
 
-    <details>
+    <details open>
     <summary>block 요소들</summary>
       <div markdown="8_1">
 
@@ -451,7 +451,7 @@
 </details>
 
 ---------------------------------------
-<details>
+<details open>
 <summary>9일차 학습</summary>
 <div markdown="9">
 

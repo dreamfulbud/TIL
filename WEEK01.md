@@ -32,7 +32,7 @@
   ```
 
 ## 구조 디자인(HTML)
-<details>
+<details open>
 <summary>1일차 학습</summary>
 <div markdown="1">
 
@@ -42,7 +42,7 @@
 - 웹사이트 콘텐츠를 설명하는데 사용되는 마크업 언어
 - HTML은 콘텐츠의 의미를 설명하는데 유일한 목적을 가집니다. 비주얼 디자인(모양, 색, 크기 등)이 목표가 아니라, **구조 설계(Structure Design)** 를 목표로 합니다.
 
-#### [시멘틱 마크업]
+시멘틱 마크업]
 - Semantic Markup :  종종 POSH(Plain Old Semantic HTML)라고도 불리우는데 말 그대로 **평범하고 오래된 의미론적인 HTML** 이라는 뜻.
   ```html
     <h1></h1> <!--제목 heading-->
@@ -136,7 +136,7 @@
 </details>
 
 ---------------------------------------
-<details>
+<details open>
 <summary>2일차 학습</summary>
 <div markdown="2">
 
@@ -270,7 +270,7 @@
 
 
 ---------------------------------------
-<details>
+<details open>
 <summary>3일차 학습</summary>
 <div markdown="3">
 
@@ -440,7 +440,7 @@
 
 
 ---------------------------------------
-<details>
+<details open>
 <summary>4일차 학습</summary>
 <div markdown="4">
 
@@ -632,12 +632,12 @@
 </details>
 
 ---------------------------------------
-<details>
+<details open>
 <summary>5일차 학습</summary>
 <div markdown="1">
 
 #### [인터랙티브 요소]
-##### ▷ `<details>` 요소
+##### ▷ `<details open>` 요소
 - 디스클로저 위젯(disclosure widget, 참고: https://goo.gl/uznvFY)으로 정보를 감추거나, 펼쳐서 보여준다.
 - 모든 정보를 일시에 공개하지 않고 사용자의 요구에 맞춰 정보를 공개할 수 있다. (화면의 복잡함을 줄임)
 - 아코디언(Accordion) 컴포넌트와 비슷하게 작동한다.
@@ -651,13 +651,13 @@
   ```
 
 ##### ▷ `<summary>` 요소
-- `<details>` 요소의 레이블/캡션(제목), 서머리(요약) 등을 표시한다.
+- `<details open>` 요소의 레이블/캡션(제목), 서머리(요약) 등을 표시한다.
 - 폼 `<fieldset>` 요소의 제목을 `<legend>`가 표시하듯 비슷하다.
 
   ```html
     <section class="progress window">
       <h1>"Really Achieving Your Childhood Dreams" 파일 복사</h1>
-      <details>
+      <details open>
       <summary>복사중... <progress max="375505392" value="97543282"></progress> 25%</summary>
       <dl>
         <dt>초당 전송 속도:</dt>
